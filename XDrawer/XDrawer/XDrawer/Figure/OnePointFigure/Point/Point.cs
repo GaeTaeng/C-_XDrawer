@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace XDrawer.NewFolder1.OnePointFigure.Point
+namespace XDrawer
 {
     public class Point : OnePointFigure
     {
@@ -24,13 +24,13 @@ namespace XDrawer.NewFolder1.OnePointFigure.Point
         public override void draw(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
-            g.DrawRectangle(pen, _x1 - 3, _y1 - 3, _x1 + 3, _y1 + 3);
+            g.DrawRectangle(pen, _x1 - 3, _y1 - 3, 6, 6);
 
         }
 
         public override void draw(Graphics g, Pen pen)
         {
-           g.DrawRectangle(pen, _x1 - 3, _y1 - 3, _x1 + 3, _y1 + 3);
+           g.DrawRectangle(pen, _x1 - 3, _y1 - 3, 6, 6);
         }
         public override void drawing(Graphics g, int newX, int newY)
         {

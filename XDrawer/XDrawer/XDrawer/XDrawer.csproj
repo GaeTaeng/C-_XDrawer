@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FigurePopup.cs" />
     <Compile Include="Figure\OnePointFigure\OnePointFigure.cs" />
     <Compile Include="Figure\OnePointFigure\Point\Point.cs" />
     <Compile Include="Figure\TwoPointFigure\Box\Box.cs" />
@@ -51,6 +52,8 @@
     <Compile Include="Figure\Figure.cs" />
     <Compile Include="Figure\TwoPointFigure\Line\Line.cs" />
     <Compile Include="Figure\TwoPointFigure\TwoPointFigure.cs" />
+    <Compile Include="MainPopup.cs" />
+    <Compile Include="Popup.cs" />
     <Compile Include="XDrawer.cs">
       <SubType>Form</SubType>
     </Compile>

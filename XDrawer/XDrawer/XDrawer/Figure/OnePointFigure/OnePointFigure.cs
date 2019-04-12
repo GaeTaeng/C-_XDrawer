@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace XDrawer.NewFolder1.OnePointFigure
+namespace XDrawer
 {
     public abstract class OnePointFigure : Figure
     {

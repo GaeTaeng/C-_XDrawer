@@ -70,7 +70,7 @@
             this.새로만들기ToolStripMenuItem.Name = "새로만들기ToolStripMenuItem";
             this.새로만들기ToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.새로만들기ToolStripMenuItem.Text = "새로만들기";
-            this.새로만들기ToolStripMenuItem.Click += new System.EventHandler(this.새로만들기ToolStripMenuItem_Click);
+            this.새로만들기ToolStripMenuItem.Click += new System.EventHandler(this.onCreateNew);
             // 
             // 열기ToolStripMenuItem
             // 
@@ -106,21 +106,21 @@
             this.사각형ToolStripMenuItem1.Name = "사각형ToolStripMenuItem1";
             this.사각형ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.사각형ToolStripMenuItem1.Text = "사각형";
-            this.사각형ToolStripMenuItem1.Click += new System.EventHandler(this.사각형ToolStripMenuItem1_Click);
+            this.사각형ToolStripMenuItem1.Click += new System.EventHandler(this.onCreateBox);
             // 
             // 선ToolStripMenuItem
             // 
             this.선ToolStripMenuItem.Name = "선ToolStripMenuItem";
             this.선ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.선ToolStripMenuItem.Text = "선";
-            this.선ToolStripMenuItem.Click += new System.EventHandler(this.선ToolStripMenuItem_Click);
+            this.선ToolStripMenuItem.Click += new System.EventHandler(this.onCreateLine);
             // 
             // 원ToolStripMenuItem
             // 
             this.원ToolStripMenuItem.Name = "원ToolStripMenuItem";
             this.원ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.원ToolStripMenuItem.Text = "원";
-            this.원ToolStripMenuItem.Click += new System.EventHandler(this.원ToolStripMenuItem_Click);
+            this.원ToolStripMenuItem.Click += new System.EventHandler(this.onCreateCircle);
             // 
             // canvas
             // 
@@ -142,7 +142,7 @@
             this.점ToolStripMenuItem.Name = "점ToolStripMenuItem";
             this.점ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.점ToolStripMenuItem.Text = "점";
-            this.점ToolStripMenuItem.Click += new System.EventHandler(this.점ToolStripMenuItem_Click);
+            this.점ToolStripMenuItem.Click += new System.EventHandler(this.onCreatePoint);
             // 
             // XDrawer
             // 

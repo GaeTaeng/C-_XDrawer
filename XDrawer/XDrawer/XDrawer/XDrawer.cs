@@ -13,6 +13,7 @@ namespace XDrawer
 {
     public partial class XDrawer : Form // Xdrawer가 손으로 짜는 코드 따로, 자동으로 짜주는 코드 따로 해주기 위해서 partial 가 붙어야 함.
     {
+        static Popup mainPopup;
         static int  DRAW_RECT    =1;
         static int  DRAW_LINE    =2;
         static int  DRAW_CIRCLE = 3;
@@ -30,6 +31,7 @@ namespace XDrawer
             nFigure = 0;
             bMousePressed = false;
             whatToDraw = DRAW_RECT;
+            mainPopup = new MainPopup(this);
         }
         [System.Runtime.InteropServices.DllImportAttribute("gdi32.dll")]
         private static extern bool BitBlt(
@@ -54,10 +56,6 @@ namespace XDrawer
 
         }
 
-        private void 새로만들기ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -137,9 +135,7 @@ namespace XDrawer
         private void canvas_MouseDown(object sender, MouseEventArgs e)
         {
             if(e.Button == MouseButtons.Right) {
-                ContextMenu main = new ContextMenu();
-                main.MenuItems.Add("모양");
-
+                mainPopup.popup(canvas, e.Location);
             }else {
                 
             Graphics g = canvas.CreateGraphics();
@@ -159,7 +155,7 @@ namespace XDrawer
             }
             else if (whatToDraw == DRAW_POINT)
             {
-                //_selectedFigure = new Point(canvas, e.X, e.Y);
+                _selectedFigure = new Point(canvas, e.X, e.Y);
             }
             _selectedFigure.draw(g);
             bMousePressed = true;
@@ -204,28 +200,34 @@ namespace XDrawer
             g2.Dispose();
         }
 
-        private void 사각형ToolStripMenuItem1_Click(object sender, EventArgs e)
+        public void onCreateBox(object sender, EventArgs e)
         {
             whatToDraw = DRAW_RECT;
         }
 
-        private void 선ToolStripMenuItem_Click(object sender, EventArgs e)
+        public void onCreateLine(object sender, EventArgs e)
         {
             whatToDraw = DRAW_LINE;
 
         }
 
 
-        private void 원ToolStripMenuItem_Click(object sender, EventArgs e)
+        public void onCreateCircle(object sender, EventArgs e)
         {
 
             whatToDraw = DRAW_CIRCLE;
         }
 
-        private void 점ToolStripMenuItem_Click(object sender, EventArgs e)
+        public void onCreatePoint(object sender, EventArgs e)
         {
 
             whatToDraw = DRAW_POINT;
+        }
+        public void onCreateNew(object sender, EventArgs e)
+        {
+            nFigure = 0;
+
+            Invalidate();
         }
 
     }
