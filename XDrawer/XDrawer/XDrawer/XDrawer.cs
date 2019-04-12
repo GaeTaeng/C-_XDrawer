@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using System.Collections;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 namespace XDrawer
 {
     public partial class XDrawer : Form // Xdrawer가 손으로 짜는 코드 따로, 자동으로 짜주는 코드 따로 해주기 위해서 partial 가 붙어야 함.
@@ -22,6 +24,7 @@ namespace XDrawer
         static int  DRAW_LINE       = 2;
         static int  DRAW_CIRCLE     = 3;
         static int  DRAW_POINT      = 4;
+
         int whatToDraw;
 
         int _currentX   = 0;
@@ -36,6 +39,20 @@ namespace XDrawer
         Figure _selectedFigure;
         Figure[] figures;
         bool bMousePressed;
+
+
+        String _fileName;
+        public PictureBox Canvas {
+            get
+            {
+                return canvas;
+            }
+            set
+            {
+                canvas = value;
+            }
+            
+        }
         public XDrawer()
         {
             _actionMode = NOTHING;
@@ -216,17 +233,20 @@ namespace XDrawer
 
         private void canvas_MouseUp(object sender, MouseEventArgs e)
         {
-            Graphics g = canvas.CreateGraphics();
+            if (_selectedFigure != null)
+            {
+                Graphics g = canvas.CreateGraphics();
 
-            _figures.addTail(_selectedFigure);
-            bMousePressed = false;
+                _figures.addTail(_selectedFigure);
+                bMousePressed = false;
 
-            _selectedFigure.makeRegion();
+                _selectedFigure.makeRegion();
 
-            _selectedFigure = null;
+                _selectedFigure = null;
 
-            _actionMode = NOTHING;
-            canvas.Invalidate();
+                _actionMode = NOTHING;
+                canvas.Invalidate();
+            }
         }
 
         private void XDrawer_Load(object sender, EventArgs e)
@@ -301,7 +321,78 @@ namespace XDrawer
             canvas.Invalidate();
         }
 
+        private void 새이름으로저장ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //common dialog
 
+            SaveFileDialog chooser = new SaveFileDialog();
+            chooser.Title = "File Save";
+            chooser.Filter = "All Files (*.*)|*.*";
+            chooser.InitialDirectory = ".";
+            chooser.OverwritePrompt = true;
+            if (chooser.ShowDialog() != DialogResult.OK) return;
+            String fileName = chooser.FileName;
+            if (fileName == null) return;
+            if (fileName.Length == 0) return;
+            _fileName = fileName;
+            doSave();
+        }
+
+        private void doSave()
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            //Serialization 을 해주는 객체
+            Stream output = File.Create(_fileName);
+            formatter.Serialize(output, _figures);
+            output.Close();
+        }
+
+        private void 불러오기ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void 열기ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog chooser = new OpenFileDialog();
+            chooser.Title = "File Open";
+            chooser.Filter = "All Files (*.*)|*.*";
+            chooser.InitialDirectory = ".";
+            if (chooser.ShowDialog() != DialogResult.OK) return;
+            _fileName = chooser.FileName;
+            _figures.Clear();
+            _selectedFigure = null;
+            
+            
+            BinaryFormatter formatter = new BinaryFormatter();
+            Stream input = File.OpenRead(_fileName);
+            _figures = (FigureList)formatter.Deserialize(input);
+            input.Close();
+            
+            
+            for (int i = 0; i < _figures.Count; i++)
+            {
+                Figure ptr = _figures.getAt(i);
+                ptr.makeRegion();
+                ptr.setView(canvas);
+                if (ptr is Point)
+                {
+                    ptr.setPopup(pointPopup);
+                }
+                else if (ptr is Line)
+                {
+                    ptr.setPopup(linePopup);
+                }
+                else if (ptr is Box)
+                {
+                    ptr.setPopup(boxPopup);
+                }
+                else if (ptr is Circle)
+                {
+                    ptr.setPopup(circlePopup);
+                }
+            }
+            canvas.Invalidate();
+        }
     }
 }
 

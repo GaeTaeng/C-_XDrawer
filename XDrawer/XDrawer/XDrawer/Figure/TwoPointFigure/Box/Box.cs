@@ -8,6 +8,7 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 namespace XDrawer
 {
+    [Serializable]
     public class Box : TwoPointFigure
     {
         public Box()

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace XDrawer
 {
+    [Serializable]
     public abstract class OnePointFigure : Figure
     {
         protected int _x1;

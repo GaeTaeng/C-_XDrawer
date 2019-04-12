@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace XDrawer
 {
+    [Serializable]
     public class Point : OnePointFigure
     {
         public Point()

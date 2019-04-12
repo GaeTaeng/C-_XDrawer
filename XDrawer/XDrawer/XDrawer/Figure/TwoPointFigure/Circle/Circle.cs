@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace XDrawer
 {
+    [Serializable]
     public class Circle : TwoPointFigure
     {
         public Circle()

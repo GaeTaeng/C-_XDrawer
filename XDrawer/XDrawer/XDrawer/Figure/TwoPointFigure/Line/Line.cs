@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace XDrawer
 {
+    [Serializable]
     public class Line : TwoPointFigure
     {
         public Line()

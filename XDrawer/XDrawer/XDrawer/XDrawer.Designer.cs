@@ -34,8 +34,8 @@
             this.사각형ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.선ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.원ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.canvas = new System.Windows.Forms.PictureBox();
             this.점ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.canvas = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.SuspendLayout();
@@ -76,6 +76,7 @@
             this.열기ToolStripMenuItem.Name = "열기ToolStripMenuItem";
             this.열기ToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.열기ToolStripMenuItem.Text = "열기";
+            this.열기ToolStripMenuItem.Click += new System.EventHandler(this.열기ToolStripMenuItem_Click);
             // 
             // 저장ToolStripMenuItem
             // 
@@ -88,6 +89,7 @@
             this.새이름으로저장ToolStripMenuItem.Name = "새이름으로저장ToolStripMenuItem";
             this.새이름으로저장ToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.새이름으로저장ToolStripMenuItem.Text = "새 이름으로 저장";
+            this.새이름으로저장ToolStripMenuItem.Click += new System.EventHandler(this.새이름으로저장ToolStripMenuItem_Click);
             // 
             // 사각형ToolStripMenuItem
             // 
@@ -102,16 +104,23 @@
             // 선ToolStripMenuItem
             // 
             this.선ToolStripMenuItem.Name = "선ToolStripMenuItem";
-            this.선ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.선ToolStripMenuItem.Size = new System.Drawing.Size(86, 22);
             this.선ToolStripMenuItem.Text = "선";
             this.선ToolStripMenuItem.Click += new System.EventHandler(this.onCreateLine);
             // 
             // 원ToolStripMenuItem
             // 
             this.원ToolStripMenuItem.Name = "원ToolStripMenuItem";
-            this.원ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.원ToolStripMenuItem.Size = new System.Drawing.Size(86, 22);
             this.원ToolStripMenuItem.Text = "원";
             this.원ToolStripMenuItem.Click += new System.EventHandler(this.onCreateCircle);
+            // 
+            // 점ToolStripMenuItem
+            // 
+            this.점ToolStripMenuItem.Name = "점ToolStripMenuItem";
+            this.점ToolStripMenuItem.Size = new System.Drawing.Size(86, 22);
+            this.점ToolStripMenuItem.Text = "점";
+            this.점ToolStripMenuItem.Click += new System.EventHandler(this.onCreatePoint);
             // 
             // canvas
             // 
@@ -127,13 +136,6 @@
             this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
             this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
             this.canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseUp);
-            // 
-            // 점ToolStripMenuItem
-            // 
-            this.점ToolStripMenuItem.Name = "점ToolStripMenuItem";
-            this.점ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.점ToolStripMenuItem.Text = "점";
-            this.점ToolStripMenuItem.Click += new System.EventHandler(this.onCreatePoint);
             // 
             // XDrawer
             // 

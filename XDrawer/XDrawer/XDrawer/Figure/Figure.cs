@@ -11,12 +11,13 @@ namespace XDrawer
 {
 
 
+    [Serializable]
     public abstract class Figure
     {
-        protected PictureBox _view;
-        protected Region _region;
-        protected Popup _popup;
-        
+        //JAVA trangiant
+        [NonSerialized] protected PictureBox _view;
+        [NonSerialized] protected Region _region;
+        [NonSerialized] protected Popup _popup;
         public Figure()
         {
             _view = null;
@@ -24,6 +25,10 @@ namespace XDrawer
         }
 
         public Figure(PictureBox view)
+        {
+            _view = view;
+        }
+        public void setView(PictureBox view)
         {
             _view = view;
         }
