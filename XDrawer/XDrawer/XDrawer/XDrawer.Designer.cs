@@ -32,7 +32,6 @@
             this.저장ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.새이름으로저장ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.사각형ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.사각형ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.선ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.원ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.canvas = new System.Windows.Forms.PictureBox();
@@ -93,20 +92,12 @@
             // 사각형ToolStripMenuItem
             // 
             this.사각형ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.사각형ToolStripMenuItem1,
             this.선ToolStripMenuItem,
             this.원ToolStripMenuItem,
             this.점ToolStripMenuItem});
             this.사각형ToolStripMenuItem.Name = "사각형ToolStripMenuItem";
             this.사각형ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.사각형ToolStripMenuItem.Text = "모양";
-            // 
-            // 사각형ToolStripMenuItem1
-            // 
-            this.사각형ToolStripMenuItem1.Name = "사각형ToolStripMenuItem1";
-            this.사각형ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.사각형ToolStripMenuItem1.Text = "사각형";
-            this.사각형ToolStripMenuItem1.Click += new System.EventHandler(this.onCreateBox);
             // 
             // 선ToolStripMenuItem
             // 
@@ -172,7 +163,6 @@
         private System.Windows.Forms.ToolStripMenuItem 새이름으로저장ToolStripMenuItem;
         private System.Windows.Forms.PictureBox canvas;
         private System.Windows.Forms.ToolStripMenuItem 사각형ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 사각형ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 선ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 원ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 점ToolStripMenuItem;

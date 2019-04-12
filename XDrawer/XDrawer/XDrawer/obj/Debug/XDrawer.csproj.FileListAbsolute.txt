@@ -15,3 +15,4 @@ C:\Users\TH-KIM\Documents\GitHub\XDrawer\XDrawer\XDrawer\XDrawer\bin\Debug\XDraw
 C:\Users\TH-KIM\Documents\GitHub\XDrawer\XDrawer\XDrawer\XDrawer\bin\Debug\XDrawer.pdb
 C:\Users\TH-KIM\Documents\GitHub\XDrawer\XDrawer\XDrawer\XDrawer\obj\Debug\XDrawer.exe
 C:\Users\TH-KIM\Documents\GitHub\XDrawer\XDrawer\XDrawer\XDrawer\obj\Debug\XDrawer.pdb
+C:\Users\TH-KIM\Documents\GitHub\XDrawer\XDrawer\XDrawer\XDrawer\obj\Debug\XDrawer.csprojResolveAssemblyReference.cache

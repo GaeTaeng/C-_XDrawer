@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FigureList.cs" />
     <Compile Include="FigurePopup.cs" />
     <Compile Include="Figure\OnePointFigure\OnePointFigure.cs" />
     <Compile Include="Figure\OnePointFigure\Point\Point.cs" />

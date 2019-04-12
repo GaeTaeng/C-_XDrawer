@@ -8,21 +8,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
-
+using System.Collections;
 namespace XDrawer
 {
     public partial class XDrawer : Form // Xdrawer가 손으로 짜는 코드 따로, 자동으로 짜주는 코드 따로 해주기 위해서 partial 가 붙어야 함.
     {
-        static Popup mainPopup;
-        static int  DRAW_RECT    =1;
-        static int  DRAW_LINE    =2;
-        static int  DRAW_CIRCLE = 3;
-        static int  DRAW_POINT = 4;
+        static Popup mainPopup      = null;
+        static Popup pointPopup     = null;
+        static Popup linePopup      = null;
+        static Popup boxPopup       = null;
+        static Popup circlePopup    = null;
+        static int  DRAW_RECT       = 1;
+        static int  DRAW_LINE       = 2;
+        static int  DRAW_CIRCLE     = 3;
+        static int  DRAW_POINT      = 4;
         int whatToDraw;
-        
+
+        FigureList _figures;
         Figure _selectedFigure;
         Figure[] figures;
-        int nFigure;
         bool bMousePressed;
         public XDrawer()
         {
@@ -31,7 +35,13 @@ namespace XDrawer
             nFigure = 0;
             bMousePressed = false;
             whatToDraw = DRAW_RECT;
+
+            _figures = new FigureList();
             mainPopup = new MainPopup(this);
+            pointPopup = new FigurePopup(this, "점", false);
+            linePopup = new FigurePopup(this, "선", false);
+            boxPopup = new FigurePopup(this, "사각형", true);
+            circlePopup = new FigurePopup(this, "원", true);
         }
         [System.Runtime.InteropServices.DllImportAttribute("gdi32.dll")]
         private static extern bool BitBlt(
@@ -83,6 +93,14 @@ namespace XDrawer
 
 
             Graphics g = e.Graphics;
+
+
+            for (int i = 0; i < _figures.Count; i++)
+            {
+                Figure fig = _figures.getAt(i);
+                fig.draw(g);
+            }
+
             if (canvas.Image != null)
             {
                 Rectangle r = canvas.ClientRectangle;
@@ -97,10 +115,6 @@ namespace XDrawer
                 g2.Dispose();
 
 
-                for (int i = 0; i < nFigure; i++)
-                {
-                    figures[i].draw(g);
-                }
 
             }
         }
@@ -135,7 +149,24 @@ namespace XDrawer
         private void canvas_MouseDown(object sender, MouseEventArgs e)
         {
             if(e.Button == MouseButtons.Right) {
-                mainPopup.popup(canvas, e.Location);
+                _selectedFigure = null;
+                for (int i = 0; i < _figures.Count; i++)
+                {
+                    Figure fig = _figures.getAt(i);
+                    if (fig.ptInRegion(e.X, e.Y))
+                    {
+                        _selectedFigure = fig;
+                        break;
+                    }
+                }
+                if (_selectedFigure != null)
+                {
+                    _selectedFigure.popup(canvas, e.Location);
+                }
+                else
+                {
+                    mainPopup.popup(canvas, e.Location);
+                }
             }else {
                 
             Graphics g = canvas.CreateGraphics();
@@ -143,19 +174,22 @@ namespace XDrawer
             if (whatToDraw == DRAW_RECT)
             {
                 _selectedFigure = new Box(canvas, e.X, e.Y, e.X, e.Y);
+                _selectedFigure.setPopup(boxPopup);
             }
             else if (whatToDraw == DRAW_LINE)
             {
                 _selectedFigure = new Line(canvas, e.X, e.Y, e.X, e.Y);
+                _selectedFigure.setPopup(linePopup);
             }
             else if (whatToDraw == DRAW_CIRCLE)
             {
                 _selectedFigure = new Circle(canvas, e.X, e.Y, e.X, e.Y);
-
+                _selectedFigure.setPopup(circlePopup);
             }
             else if (whatToDraw == DRAW_POINT)
             {
                 _selectedFigure = new Point(canvas, e.X, e.Y);
+                _selectedFigure.setPopup(pointPopup);
             }
             _selectedFigure.draw(g);
             bMousePressed = true;
@@ -166,12 +200,15 @@ namespace XDrawer
         {
             Graphics g = canvas.CreateGraphics();
 
-            Pen aPen = new Pen(Color.Black,2);
-
-            figures[nFigure++] = _selectedFigure;
-            canvas.Invalidate();
+            _figures.addTail(_selectedFigure);
             bMousePressed = false;
+
+            _selectedFigure.makeRegion();
+
             _selectedFigure = null;
+
+
+            canvas.Invalidate();
         }
 
         private void XDrawer_Load(object sender, EventArgs e)
@@ -225,11 +262,14 @@ namespace XDrawer
         }
         public void onCreateNew(object sender, EventArgs e)
         {
-            nFigure = 0;
-
+            _figures.Clear();
             Invalidate();
         }
 
+        public void Delete_Click(object sentder, EventArgs e)
+        {
+
+        }
     }
 }
 

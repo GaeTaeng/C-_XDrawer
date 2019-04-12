@@ -38,5 +38,21 @@ namespace XDrawer
             draw(g, pp);
             pPen.Dispose();
         }
+
+        public override void makeRegion()
+        {
+            System.Drawing.Point[] pt = new System.Drawing.Point[4];
+            pt[0].X = _x1 - 3; pt[0].Y = _y1 - 3;
+            pt[1].X = _x1 + 3; pt[1].Y = _y1 - 3;
+            pt[2].X = _x1 + 3; pt[2].Y = _y1 + 3;
+            pt[3].X = _x1 - 3; pt[3].Y = _y1 + 3;
+            byte[] type = new byte[4];
+            type[0] = (byte)PathPointType.Line;
+            type[1] = (byte)PathPointType.Line;
+            type[2] = (byte)PathPointType.Line;
+            type[3] = (byte)PathPointType.Line;
+            GraphicsPath gp = new GraphicsPath(pt, type);
+            _region = new Region(gp);
+        }
     }
 }
