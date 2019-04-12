@@ -1,0 +1,9 @@
+D:\C#\XDrawer\XDrawer\bin\Debug\XDrawer.exe.config
+D:\C#\XDrawer\XDrawer\bin\Debug\XDrawer.exe
+D:\C#\XDrawer\XDrawer\bin\Debug\XDrawer.pdb
+D:\C#\XDrawer\XDrawer\obj\Debug\XDrawer.csprojResolveAssemblyReference.cache
+D:\C#\XDrawer\XDrawer\obj\Debug\XDrawer.Properties.Resources.resources
+D:\C#\XDrawer\XDrawer\obj\Debug\XDrawer.csproj.GenerateResource.Cache
+D:\C#\XDrawer\XDrawer\obj\Debug\XDrawer.exe
+D:\C#\XDrawer\XDrawer\obj\Debug\XDrawer.pdb
+D:\C#\XDrawer\XDrawer\obj\Debug\XDrawer.XDrawer.resources
