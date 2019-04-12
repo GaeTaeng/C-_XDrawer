@@ -24,15 +24,23 @@ namespace XDrawer
         static int  DRAW_POINT      = 4;
         int whatToDraw;
 
+        int _currentX   = 0;
+        int _currentY   = 0;
+
+        static int NOTHING = 0;
+        static int DRAWING = 1;
+        static int MOVING = 2;
+        int _actionMode;
+
         FigureList _figures;
         Figure _selectedFigure;
         Figure[] figures;
         bool bMousePressed;
         public XDrawer()
         {
+            _actionMode = NOTHING;
             InitializeComponent();
             figures = new Figure[100];
-            nFigure = 0;
             bMousePressed = false;
             whatToDraw = DRAW_RECT;
 
@@ -121,29 +129,20 @@ namespace XDrawer
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (bMousePressed)
+            Graphics g = canvas.CreateGraphics();
+            int x = e.X;
+            int y = e.Y;
+            if (_actionMode == DRAWING)
             {
-                Graphics g = canvas.CreateGraphics();
-
-                _selectedFigure.drawing(g, e.X, e.Y);
-                /*
-                g.CompositingMode = CompositingMode.SourceOver;
-                TextureBrush brush = new TextureBrush(canvas.Image);
-                Pen pen = new Pen(brush, 1);
-                pen.DashStyle = DashStyle.Solid;
-
-                g.DrawRectangle(pen, ox, oy, ex  - ox, ey - oy);
-                pen.Dispose();
-                ex = e.X;
-                ey = e.Y;
-                Pen p = new Pen(Color.Black,1);
-                p.DashStyle = DashStyle.Solid;
-                g.DrawRectangle(p, ox, oy, ex - ox, ey - oy);
-                p.Dispose();
-                brush.Dispose();
-                */
-                g.Dispose();
+                _selectedFigure.drawing(g, x, y);
             }
+            else if (_actionMode == MOVING)
+            {
+                _selectedFigure.move(g, x -  _currentX, y - _currentY);
+                _currentX = x;
+                _currentY = y;
+            }
+            g.Dispose();
         }
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
@@ -168,7 +167,25 @@ namespace XDrawer
                     mainPopup.popup(canvas, e.Location);
                 }
             }else {
-                
+                _selectedFigure = null;
+                for (int i = 0; i < _figures.Count; i++)
+                {
+                    Figure fig = _figures.getAt(i);
+                    if (fig.ptInRegion(e.X, e.Y))
+                    {
+                        _selectedFigure = fig;
+                        break;
+                    }
+                }
+                if (_selectedFigure != null)
+                {
+                    _figures.removeFigure(_selectedFigure);
+                    _currentX = e.X;
+                    _currentY = e.Y;
+                    _actionMode = MOVING;
+                    canvas.Invalidate();
+                    return;
+                }
             Graphics g = canvas.CreateGraphics();
             Pen aPen = new Pen(Color.Black,2);
             if (whatToDraw == DRAW_RECT)
@@ -193,6 +210,7 @@ namespace XDrawer
             }
             _selectedFigure.draw(g);
             bMousePressed = true;
+            _actionMode = DRAWING;
             }
         }
 
@@ -207,7 +225,7 @@ namespace XDrawer
 
             _selectedFigure = null;
 
-
+            _actionMode = NOTHING;
             canvas.Invalidate();
         }
 
@@ -268,8 +286,22 @@ namespace XDrawer
 
         public void Delete_Click(object sentder, EventArgs e)
         {
-
+            if (_selectedFigure == null) return;
+            _figures.removeFigure(_selectedFigure);
+            _selectedFigure = null;
+            canvas.Invalidate();
         }
+        public void Copy_Click(object sentder, EventArgs e)
+        {
+            if (_selectedFigure == null) return;
+            Figure newFigure = _selectedFigure.clone();
+            newFigure.makeRegion();
+            _figures.addTail(newFigure);
+            _selectedFigure = null;
+            canvas.Invalidate();
+        }
+
+
     }
 }
 

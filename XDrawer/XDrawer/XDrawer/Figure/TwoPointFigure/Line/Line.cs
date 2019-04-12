@@ -32,7 +32,7 @@ namespace XDrawer
             g.DrawLine(pen, _x1, _y1, _x2, _y2);
             pen.Dispose();
         }
-        public void move(int x, int y)
+        public void moving(int x, int y)
         {
             _x2 = x;
             _y2 = y;
@@ -45,7 +45,7 @@ namespace XDrawer
             Pen pPen = new Pen(brush, 1);
             draw(g, pPen);
             pPen.Dispose();
-            move(x, y);
+            moving(x, y);
 
             Pen pp = new Pen(Color.Black, 1);
             draw(g, pp);
@@ -78,6 +78,14 @@ namespace XDrawer
             type[3] = (byte)PathPointType.Line;
             GraphicsPath gp = new GraphicsPath(pt, type);
             _region = new Region(gp);
+        }
+
+        public override Figure clone()
+        {
+            Line newFigure = new Line(_view, _x1, _y1, _x2, _y2);
+            newFigure._popup = _popup;
+            newFigure.move(10, 20);
+            return newFigure;
         }
     }
 }

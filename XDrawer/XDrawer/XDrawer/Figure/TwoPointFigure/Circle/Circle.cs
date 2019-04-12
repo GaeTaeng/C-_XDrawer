@@ -31,7 +31,7 @@ namespace XDrawer
             g.DrawEllipse(pen, Math.Min(_x1, _x2), Math.Min(_y1, _y2), Math.Abs(_x2 - _x1), Math.Abs(_y2 - _y1));
             pen.Dispose();
         }
-        public void move(int x, int y)
+        public void moving(int x, int y)
         {
             _x2 = x;
             _y2 = y;
@@ -44,11 +44,18 @@ namespace XDrawer
             Pen pPen = new Pen(brush, 1);
             draw(g, pPen);
             pPen.Dispose();
-            move(x, y);
+            moving(x, y);
         
             Pen pp = new Pen(Color.Black, 1);
             draw(g, pp);
             pPen.Dispose();
+        }
+        public override Figure clone()
+        {
+            Circle newFigure = new Circle(_view, _x1, _y1, _x2, _y2);
+            newFigure._popup = _popup;
+            newFigure.move(10, 20);
+            return newFigure;
         }
     }
 }

@@ -14,11 +14,11 @@ namespace XDrawer
         : base(view,title)
         {
               MenuItem deleteItem = new MenuItem(" 지우기 ");
-              //deleteItem.Click += new EventHandler(view.onDeleteFigure);
+              deleteItem.Click += new EventHandler(view.Delete_Click);
               _popupPtr.MenuItems.Add(deleteItem);
 
               MenuItem copyItem = new MenuItem(" 복사하기 ");
-             // copyItem.Click += new EventHandler(view.onCopyFigure);
+              copyItem.Click += new EventHandler(view.Copy_Click);
               _popupPtr.MenuItems.Add(copyItem);
 
               MenuItem[] colorPopup = new MenuItem[4];

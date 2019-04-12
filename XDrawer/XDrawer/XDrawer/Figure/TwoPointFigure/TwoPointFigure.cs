@@ -40,6 +40,13 @@ namespace XDrawer
            draw(g, pp);
            pPen.Dispose();
        }
+       public override void move(int x, int y)
+       {
+           _x1 += x;
+           _y1 += y;
+           _x2 += x;
+           _y2 += y;
+       }
        public override void makeRegion()
        {
            System.Drawing.Point[] pt = new System.Drawing.Point[4];

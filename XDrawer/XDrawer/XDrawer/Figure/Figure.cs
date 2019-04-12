@@ -15,7 +15,7 @@ namespace XDrawer
     {
         protected PictureBox _view;
         protected Region _region;
-        private Popup _popup;
+        protected Popup _popup;
         
         public Figure()
         {
@@ -39,9 +39,33 @@ namespace XDrawer
         {
             _popup.popup(canvas, pos);
         }
+        public virtual void move(Graphics g, int dx, int dy)
+        {
+            g.CompositingMode = CompositingMode.SourceOver;
+            TextureBrush brush = new TextureBrush(_view.Image);
+            Pen pen = new Pen(brush, 2);
+            pen.DashStyle = DashStyle.Solid;
+
+            draw(g, pen);
+
+            pen.Dispose();
+
+            move(dx, dy);
+
+            Pen p = new Pen(Color.Black, 2);
+            p.DashStyle = DashStyle.Solid;
+
+            draw(g, p);
+
+            brush.Dispose();
+            p.Dispose();
+        }
+        public abstract Figure clone();
         public abstract void makeRegion();
         public abstract void draw(Graphics g);
         public abstract void draw(Graphics g, Pen pen);
         public abstract void drawing(Graphics g, int newX, int newY);
+        public abstract void move(int dx, int dy);
+        
     }
 }
