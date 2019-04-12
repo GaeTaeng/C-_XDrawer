@@ -34,8 +34,9 @@
             this.사각형ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.사각형ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.선ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.canvas = new System.Windows.Forms.PictureBox();
             this.원ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.canvas = new System.Windows.Forms.PictureBox();
+            this.점ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.SuspendLayout();
@@ -94,7 +95,8 @@
             this.사각형ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.사각형ToolStripMenuItem1,
             this.선ToolStripMenuItem,
-            this.원ToolStripMenuItem});
+            this.원ToolStripMenuItem,
+            this.점ToolStripMenuItem});
             this.사각형ToolStripMenuItem.Name = "사각형ToolStripMenuItem";
             this.사각형ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.사각형ToolStripMenuItem.Text = "모양";
@@ -113,6 +115,13 @@
             this.선ToolStripMenuItem.Text = "선";
             this.선ToolStripMenuItem.Click += new System.EventHandler(this.선ToolStripMenuItem_Click);
             // 
+            // 원ToolStripMenuItem
+            // 
+            this.원ToolStripMenuItem.Name = "원ToolStripMenuItem";
+            this.원ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.원ToolStripMenuItem.Text = "원";
+            this.원ToolStripMenuItem.Click += new System.EventHandler(this.원ToolStripMenuItem_Click);
+            // 
             // canvas
             // 
             this.canvas.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -128,12 +137,12 @@
             this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
             this.canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseUp);
             // 
-            // 원ToolStripMenuItem
+            // 점ToolStripMenuItem
             // 
-            this.원ToolStripMenuItem.Name = "원ToolStripMenuItem";
-            this.원ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.원ToolStripMenuItem.Text = "원";
-            this.원ToolStripMenuItem.Click += new System.EventHandler(this.원ToolStripMenuItem_Click);
+            this.점ToolStripMenuItem.Name = "점ToolStripMenuItem";
+            this.점ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.점ToolStripMenuItem.Text = "점";
+            this.점ToolStripMenuItem.Click += new System.EventHandler(this.점ToolStripMenuItem_Click);
             // 
             // XDrawer
             // 
@@ -166,6 +175,7 @@
         private System.Windows.Forms.ToolStripMenuItem 사각형ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 선ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 원ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 점ToolStripMenuItem;
     }
 }
 

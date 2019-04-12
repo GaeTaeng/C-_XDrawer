@@ -6,30 +6,28 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-
 namespace XDrawer
 {
-    public class Line : TwoPointFigure
+    public class Box : TwoPointFigure
     {
-        public Line()
+        public Box()
             : base()
         {
         }
 
-        public Line(PictureBox view, int x1, int y1, int x2, int y2)
-            :base(view, x1, y1, x2, y2)
+        public Box(PictureBox view, int x1, int y1, int x2, int y2)
+            : base(view, x1, y1, x2, y2)
         {
         }
-
         public override void draw(Graphics g)
         {
             Pen pPen = new Pen(Color.Black,2);
-            g.DrawLine(pPen, _x1, _y1, _x2, _y2);
+            g.DrawRectangle(pPen, Math.Min(_x1, _x2), Math.Min(_y1, _y2), Math.Abs(_x2 - _x1), Math.Abs(_y2 - _y1));
             pPen.Dispose();
         }
-        public void draw(Graphics g, Pen pen)
+        public override void draw(Graphics g, Pen pen)
         {
-            g.DrawLine(pen, _x1, _y1, _x2, _y2);
+            g.DrawRectangle(pen, Math.Min(_x1, _x2), Math.Min(_y1, _y2), Math.Abs(_x2 - _x1), Math.Abs(_y2 - _y1));
             pen.Dispose();
         }
         public void move(int x, int y)

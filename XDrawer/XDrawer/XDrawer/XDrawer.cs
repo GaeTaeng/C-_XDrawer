@@ -16,8 +16,9 @@ namespace XDrawer
         static int  DRAW_RECT    =1;
         static int  DRAW_LINE    =2;
         static int  DRAW_CIRCLE = 3;
+        static int  DRAW_POINT = 4;
         int whatToDraw;
-
+        
         Figure _selectedFigure;
         Figure[] figures;
         int nFigure;
@@ -135,6 +136,12 @@ namespace XDrawer
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
         {
+            if(e.Button == MouseButtons.Right) {
+                ContextMenu main = new ContextMenu();
+                main.MenuItems.Add("모양");
+
+            }else {
+                
             Graphics g = canvas.CreateGraphics();
             Pen aPen = new Pen(Color.Black,2);
             if (whatToDraw == DRAW_RECT)
@@ -150,8 +157,13 @@ namespace XDrawer
                 _selectedFigure = new Circle(canvas, e.X, e.Y, e.X, e.Y);
 
             }
+            else if (whatToDraw == DRAW_POINT)
+            {
+                //_selectedFigure = new Point(canvas, e.X, e.Y);
+            }
             _selectedFigure.draw(g);
             bMousePressed = true;
+            }
         }
 
         private void canvas_MouseUp(object sender, MouseEventArgs e)
@@ -208,6 +220,12 @@ namespace XDrawer
         {
 
             whatToDraw = DRAW_CIRCLE;
+        }
+
+        private void 점ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            whatToDraw = DRAW_POINT;
         }
 
     }

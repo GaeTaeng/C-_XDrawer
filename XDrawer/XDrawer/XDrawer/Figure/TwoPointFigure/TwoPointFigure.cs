@@ -17,6 +17,7 @@ namespace XDrawer
        protected int _y2;
 
        public TwoPointFigure()
+           : base()
        {
            _x1 = _x1 = _x2 = _y2 = 0;
        }
@@ -26,5 +27,18 @@ namespace XDrawer
             _x1 = x1; _y1 = y1;
             _x2 = x2; _y2 = y2;
         }
+       public override void drawing(Graphics g, int x, int y)
+       {
+
+           g.CompositingMode = CompositingMode.SourceOver;
+           TextureBrush brush = new TextureBrush(_view.Image);
+           Pen pPen = new Pen(brush, 1);
+           draw(g, pPen);
+           pPen.Dispose();
+
+           Pen pp = new Pen(Color.Black, 1);
+           draw(g, pp);
+           pPen.Dispose();
+       }
     }
 }

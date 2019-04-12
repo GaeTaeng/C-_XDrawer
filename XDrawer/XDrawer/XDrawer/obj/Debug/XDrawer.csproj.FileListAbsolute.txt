@@ -7,3 +7,11 @@ D:\C#\XDrawer\XDrawer\obj\Debug\XDrawer.csproj.GenerateResource.Cache
 D:\C#\XDrawer\XDrawer\obj\Debug\XDrawer.exe
 D:\C#\XDrawer\XDrawer\obj\Debug\XDrawer.pdb
 D:\C#\XDrawer\XDrawer\obj\Debug\XDrawer.XDrawer.resources
+C:\Users\TH-KIM\Documents\GitHub\XDrawer\XDrawer\XDrawer\XDrawer\obj\Debug\XDrawer.XDrawer.resources
+C:\Users\TH-KIM\Documents\GitHub\XDrawer\XDrawer\XDrawer\XDrawer\obj\Debug\XDrawer.Properties.Resources.resources
+C:\Users\TH-KIM\Documents\GitHub\XDrawer\XDrawer\XDrawer\XDrawer\obj\Debug\XDrawer.csproj.GenerateResource.Cache
+C:\Users\TH-KIM\Documents\GitHub\XDrawer\XDrawer\XDrawer\XDrawer\bin\Debug\XDrawer.exe.config
+C:\Users\TH-KIM\Documents\GitHub\XDrawer\XDrawer\XDrawer\XDrawer\bin\Debug\XDrawer.exe
+C:\Users\TH-KIM\Documents\GitHub\XDrawer\XDrawer\XDrawer\XDrawer\bin\Debug\XDrawer.pdb
+C:\Users\TH-KIM\Documents\GitHub\XDrawer\XDrawer\XDrawer\XDrawer\obj\Debug\XDrawer.exe
+C:\Users\TH-KIM\Documents\GitHub\XDrawer\XDrawer\XDrawer\XDrawer\obj\Debug\XDrawer.pdb

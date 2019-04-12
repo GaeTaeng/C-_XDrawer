@@ -26,7 +26,7 @@ namespace XDrawer
             g.DrawEllipse(pPen, Math.Min(_x1, _x2), Math.Min(_y1, _y2), Math.Abs(_x2 - _x1), Math.Abs(_y2 - _y1));
             pPen.Dispose();
         }
-        public void draw(Graphics g, Pen pen)
+        public override void draw(Graphics g, Pen pen)
         {
             g.DrawEllipse(pen, Math.Min(_x1, _x2), Math.Min(_y1, _y2), Math.Abs(_x2 - _x1), Math.Abs(_y2 - _y1));
             pen.Dispose();

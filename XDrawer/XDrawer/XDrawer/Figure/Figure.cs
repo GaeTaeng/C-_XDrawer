@@ -24,6 +24,7 @@ namespace XDrawer
             _view = view;
         }
         public abstract void draw(Graphics g);
+        public abstract void draw(Graphics g, Pen pen);
         public abstract void drawing(Graphics g, int newX, int newY);
     }
 }
